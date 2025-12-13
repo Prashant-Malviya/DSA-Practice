@@ -3,9 +3,27 @@ package matrix;
 import java.util.Arrays;
 
 public class P07_median_row_sorted_mat {
-    
 
-    int matMed(int mat[][], int r, int c)
+
+    static int matMedNaive(int[][]mat,int r, int c){
+
+        int[] arr = new int[r*c];
+
+        int idx = 0;
+
+        for(int i=0;i<r;i++){
+
+            for(int j=0;j<c;j++){
+                arr[idx++] = mat[i][j];
+            }
+        }
+
+        Arrays.sort(arr);
+
+        return arr[(r*c)/2];
+    }
+
+   static int matMedEfficient(int mat[][], int r, int c)
 {
     int min = mat[0][0], max = mat[0][c-1];
 
@@ -38,6 +56,18 @@ public class P07_median_row_sorted_mat {
 
     public static void main(String[] args) {
         
+        int[][] mat = {
+            { 1, 10, 20 },
+            { 15, 25, 35 },
+            { 5, 30, 40 },
+        };
+
+        // int median = matMedEfficient(mat, 3, 3);
+        int median = matMedNaive(mat, 3,3);
+        
+        System.out.println(median);
+
+
     }
 
 }
